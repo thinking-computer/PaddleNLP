@@ -1,6 +1,6 @@
-## 🚣‍♂️ 使用PaddleNLP在太初sdaa 下运行llama2-13b-chat模型 🚣
+## 🚣‍♂️ 使用PaddleNLP在太初sdaa 下运行Llama-2-13b-chat模型 🚣
 
-PaddleNLP在太初sdaa上对llama2-13B模型进行了深度适配和优化，实现了sdaa device推理入口和GPU的基本统一，仅需修改device即可完成推理任务的迁移。
+PaddleNLP在太初sdaa上对Llama-2-13b-chat模型进行了深度适配和优化，实现了sdaa device推理入口和GPU的基本统一，仅需修改device即可完成推理任务的迁移。
 
 ## 🚀 快速开始 🚀
 
@@ -15,24 +15,24 @@ PaddleNLP在太初sdaa上对llama2-13B模型进行了深度适配和优化，实
 
 #### 1.1 拉取镜像
 ```bash
-# 注意此镜像包含预编译的飞桨安装包, tecodriver, tecotoolkit等，可以一键运行paddlenlp模型
+# 注意此镜像包含预编译的飞桨安装包, TecoDriver, TecoToolKit等，可以一键运行paddlenlp模型
 wget http://mirrors.tecorigin.com/repository/teco-3rd-repo/custom_device/ubuntu22.04/x86_64/1.3.0/paddle_sdaa_1.3.0_llm_infer.tar 
 docker load < paddle_sdaa_1.3.0_llm_infer.tar
 ```
 
 #### 1.2 参考如下命令启动容器
 ```bash
-docker run -itd --name="paddle-sdaa-dev" --net=host --privileged --cap-add SYS_PTRACE --cap-add SYS_ADMIN --shm-size 64g jfrog.tecorigin.net/tecotp-docker/release/ubuntu22.04/x86_64/paddle_sdaa:1.3.0-llm-infer /bin/bash
+docker run -itd --name="paddle-sdaa-dev" --net=host --privileged --cap-add SYS_PTRACE --cap-add SYS_ADMIN --shm-size 128g jfrog.tecorigin.net/tecotp-docker/release/ubuntu22.04/x86_64/paddle_sdaa:1.3.0-llm-infer /bin/bash
 ```
 
 #### 1.3 下载PaddleNLP仓库代码，并安装依赖
 ```bash
-# PaddleNLP是基于PaddlePaddle『飞桨』的自然语言处理和大语言模型(LLM)开发库，存放了基于『飞桨』框架实现的各种大模型，llama2-13B模型也包含其中。为了便于您更好地使用PaddleNLP，您需要clone整个仓库。
+# PaddleNLP是基于PaddlePaddle『飞桨』的自然语言处理和大语言模型(LLM)开发库，存放了基于『飞桨』框架实现的各种大模型，Llama-2-13b-chat模型也包含其中。为了便于您更好地使用PaddleNLP，您需要clone整个仓库。
 git clone https://github.com/PaddlePaddle/PaddleNLP.git
 cd PaddleNLP
 export PYTHONPATH=/path/to/PaddleNLP:$PYTHONPATH
 pip install -r requirements.txt
-cd csrc/sdaa && python setup_sdaa.py install && cd ../../llm
+cd csrc/sdaa && python setup_sdaa.py install && cd ../../llm/sdaa/llama
 ```
 ### 2. 推理：(这将花费您15~30min时间)
 #### 2.1 动态图分布式推理

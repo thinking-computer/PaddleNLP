@@ -9,7 +9,7 @@
 
 # 2. 安装 paddlenlp_ops
 ```shell
-python setup.py build bdist_wheel
+python setup_sdaa.py build bdist_wheel
 
 pip install dist/paddlenlp_ops*.whl
 ```
